@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuenta Atrás para la Boda de [Tu Nombre]</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f3f3f3;
+            color: #333;
+            background-image: url('file:///C:/Users/bogda/Desktop/image1.jpeg'); /* Reemplaza con tu URL de imagen */
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        .countdown {
+            font-size: 2em;
+            margin-top: 20%;
+            color: white;
+            text-shadow: 2px 2px 4px #000000;
+        }
+    </style>
+</head>
+<body>
+    <div class="countdown" id="countdown"></div>
+    <script>
+        function updateCountdown() {
+            const weddingDate = new Date('2024-07-20T00:00:00').getTime(); // Cambia la fecha a tu fecha de boda
+            const now = new Date().getTime();
+            const difference = weddingDate - now;
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById('countdown').innerHTML = `${days} días ${hours} horas ${minutes} minutos ${seconds} segundos`;
+
+            if (difference < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById('countdown').innerHTML = "¡La boda ha comenzado!";
+            }
+        }
+
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
